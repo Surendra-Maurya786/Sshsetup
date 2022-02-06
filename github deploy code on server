@@ -1,0 +1,85 @@
+How to Deploy a Website to a Remote Server Using GIT
+
+Steps 1. Push code on server.
+
+steps 2. FTP Deploy 
+
+2.1 Automate deploying websites and more with this GitHub action
+
+
+
+
+Click on repository 
+
+Click on Action Menu
+
+Click on  link ->
+Skip this and set up a workflow yourself 
+
+main.yml file show after clicking 
+
+remove all code  and paste or refer this link
+
+https://github.com/marketplace/actions/ftp-deploy
+
+syntax :
+
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      with:
+        server: ftp.samkirkland.com    // ftp host name or ip
+        username: myFtpUserName    // ftp  user name  
+        password: ${{ secrets.ftp_password }}   // ftp password
+
+example 
+
+on: push
+name:  Deploy website on push
+jobs:
+  web-deploy:
+    name:  Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name:  Get latest code
+      uses: actions/checkout@v2.3.2
+    
+    - name:  Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: files.000webhost.com
+        username: sdmaurya
+        password: example@12345
+        server-dir: /public_html/        
+        security: strict
+
+
+
+Commit or save file  
+
+After Commiting It will automatically sync on server
+
+
+Steps 
+
+Select the repository you want to add the action to
+Select the Actions tab
+Select Blank workflow file or Set up a workflow yourself, if you don't see these options manually create a yaml file Your_Project/.github/workflows/main.yml
+Paste the example above into your yaml file and save
+Now you need to add a key to the secrets section in your project. To add a secret go to the Settings tab in your project then select Secrets. Add a new Secret for password
+Update your yaml file settings
+If you appreciate this github action give it a ⭐ or show off with one of the badges below.
+
+
+
+
+
